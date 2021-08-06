@@ -1,0 +1,40 @@
+<h3>
+  Buscar por region <small>{{ regionActiva | titlecase }}</small>
+</h3>
+<hr />
+
+<h5>Seleccione las regiones</h5>
+
+<!--
+
+  Son formas de aplicarle un sombreado cuando un boton esta seleccionado
+
+
+  [ngClass]="{
+       'btn-primary': regionActiva==region,
+       'btn-outline-primary': regionActiva!==region
+     }
+     "
+
+  [class.btn-primary]="region===regionActiva"
+
+  [class]="(region==regionActiva) ? 'btn btn-primary':
+     'btn btn-outline-primary'"
+-->
+<div class="row">
+  <div class="col">
+    <button
+      *ngFor="let region of regiones"
+      (click)="activarRegion(region)"
+      [class]="getClase(region)"
+    >
+      {{ region | titlecase }}
+    </button>
+  </div>
+</div>
+
+<div *ngIf="paises.length>0" class="row">
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
+</div>
